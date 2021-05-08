@@ -7,6 +7,8 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -14,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Authentication extends Activity {
-
+    boolean http_result;
     @Override
     public void onCreate(Bundle savedInstanceData){
         super.onCreate(savedInstanceData);
@@ -36,12 +38,25 @@ public class Authentication extends Activity {
                         urlConnection.setRequestProperty ("Authorization", basicAuth);
                         InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                         String s = Authentication.readStream(in);
-                        Log.i("yolo", s);
+                        JSONObject json = new JSONObject(s);
+                        this.http_result = (boolean) json.get("authenticated");
+                        runOnUiThread(() -> {
+                            TextView httpResp = findViewById(R.id.textview_http_response);
+                            String notif;
+                            if (this.http_result) notif = "Authentication succeeded";
+                            else notif = "Authentication failed";
+                            httpResp.setText(notif);
+                        });
                     } finally {
                         urlConnection.disconnect();
                     }
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
+                    runOnUiThread(() -> {
+                        TextView httpResp = findViewById(R.id.textview_http_response);
+                        String notif = "Authentication failed";
+                        httpResp.setText(notif);
+                    });
                 }
             }).start();
         });

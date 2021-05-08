@@ -8,26 +8,41 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:background="@color/cardview_shadow_end_color"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:id="@+id/textfield_username"
+                android:layout_margin="50dp"
+                android:hint="@string/username"
         />
+
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:id="@+id/textfield_password"
+                android:layout_margin="50dp"
+                android:hint="@string/password"
         />
 
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_log_in"
+                android:text="@string/log_in"
                 android:id="@+id/button_login"
+
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Http response"
+                android:layout_margin="50dp"
+                android:id="@+id/textview_http_response"
         />
 
     </LinearLayout>
