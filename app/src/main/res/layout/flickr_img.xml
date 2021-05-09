@@ -7,7 +7,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:background="@color/cardview_shadow_end_color">
 
         <Button
@@ -15,6 +15,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/get_an_image"
                 android:id="@+id/button_get_img"
+                android:layout_margin="50dp"
+        />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/flickr_img"
+                android:contentDescription="@string/flickr_image_activity"
         />
 
     </LinearLayout>

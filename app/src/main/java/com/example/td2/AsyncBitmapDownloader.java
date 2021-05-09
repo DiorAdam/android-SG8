@@ -1,37 +1,35 @@
 package com.example.td2;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ImageView;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AsyncFlickrJSONData extends AsyncTask<String, Void, JSONObject> {
+public class AsyncBitmapDownloader extends AsyncTask<String, Void, Bitmap> {
     //@SuppressLint("StaticFieldLeak")
     FlickrImgActivity flickrAct;
 
-    public AsyncFlickrJSONData(FlickrImgActivity flickrAct_){
+    public AsyncBitmapDownloader(FlickrImgActivity flickrAct_){
         this.flickrAct = flickrAct_;
     }
 
-
     @Override
-    protected JSONObject doInBackground(String... strings) {
+    protected Bitmap doInBackground(String... strings) {
         URL url = null;
         try {
             url = new URL(strings[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                String s = AuthActivity.readStream(in);
-                s = s.substring(15, s.length()-1); //Remove jsonFlickrFeed()
-                return new JSONObject(s);
+                return BitmapFactory.decodeStream(in);
             } finally {
                 urlConnection.disconnect();
             }
@@ -41,17 +39,9 @@ public class AsyncFlickrJSONData extends AsyncTask<String, Void, JSONObject> {
         return null;
     }
 
-    protected void onPostExecute(JSONObject result){
-
-        try {
-            String img_url = result.getJSONArray("items").getJSONObject(1).getJSONObject("media").getString("m");
-            Log.i("yolo", "img url: " + img_url);
-            new AsyncBitmapDownloader(flickrAct).execute(img_url);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+    @Override
+    protected void onPostExecute(Bitmap bm){
+        Log.i("yolo", "we're in onPostExecute of AsyncBitmap");
+        flickrAct.flickr_img.setImageBitmap(bm);
     }
 }
-
-
