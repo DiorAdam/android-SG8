@@ -1,10 +1,8 @@
 package com.example.td2;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,10 +10,9 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Authentication extends Activity {
+public class AuthActivity extends Activity {
     boolean http_result;
     @Override
     public void onCreate(Bundle savedInstanceData){
@@ -37,7 +34,7 @@ public class Authentication extends Activity {
                                 Base64.NO_WRAP);
                         urlConnection.setRequestProperty ("Authorization", basicAuth);
                         InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                        String s = Authentication.readStream(in);
+                        String s = AuthActivity.readStream(in);
                         JSONObject json = new JSONObject(s);
                         this.http_result = (boolean) json.get("authenticated");
                         runOnUiThread(() -> {
@@ -50,7 +47,9 @@ public class Authentication extends Activity {
                     } finally {
                         urlConnection.disconnect();
                     }
-                } catch (Exception e) {
+                }
+
+                catch (Exception e) {
                     e.printStackTrace();
                     runOnUiThread(() -> {
                         TextView httpResp = findViewById(R.id.textview_http_response);

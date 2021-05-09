@@ -3,4 +3,7 @@
     <string name="log_in">Log In</string>
     <string name="username">username</string>
     <string name="password">password</string>
+    <string name="bob_sympa_activity">Bob Sympa Activity</string>
+    <string name="get_an_image">Get an Image</string>
+    <string name="flickr_image_activity">Flickr Image Activity</string>
 </resources>
