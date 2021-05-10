@@ -1,24 +1,21 @@
 package com.example.td2;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ImageView;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 
-public class AsyncFlickrJSONData extends AsyncTask<String, Void, JSONObject> {
-    //@SuppressLint("StaticFieldLeak")
-    FlickrImgActivity flickrAct;
+public class AsyncFlickrJSONDataForList extends AsyncTask<String, Void, JSONObject> {
+    ListImgAdapter adapter;
 
-    public AsyncFlickrJSONData(FlickrImgActivity flickrAct_){
-        this.flickrAct = flickrAct_;
+    public AsyncFlickrJSONDataForList(ListImgAdapter adapter_){
+        this.adapter = adapter_;
     }
 
 
@@ -43,16 +40,17 @@ public class AsyncFlickrJSONData extends AsyncTask<String, Void, JSONObject> {
     }
 
     protected void onPostExecute(JSONObject result){
-
         try {
-            String img_url = result.getJSONArray("items").getJSONObject(1).getJSONObject("media").getString("m");
-            Log.i("yolo", "img url: " + img_url);
-            new AsyncBitmapDownloader(flickrAct).execute(img_url);
+            JSONArray items = result.getJSONArray("items");
+            String img_url;
+            for (int i=0; i<items.length(); i++){
+                img_url = items.getJSONObject(i).getJSONObject("media").getString("m");
+                this.adapter.add(img_url);
+            }
         }
         catch(Exception e){
             e.printStackTrace();
         }
+
     }
 }
-
-

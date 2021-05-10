@@ -37,4 +37,15 @@
             android:id="@+id/button_flickr_img"
             app:layout_constraintVertical_bias="0.614"/>
 
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/flickr_image_list_activity"
+            android:id="@+id/button_flickr_img_list"
+            app:layout_constraintVertical_bias="0.768"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

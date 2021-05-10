@@ -6,4 +6,5 @@
     <string name="bob_sympa_activity">Bob Sympa Activity</string>
     <string name="get_an_image">Get an Image</string>
     <string name="flickr_image_activity">Flickr Image Activity</string>
+    <string name="flickr_image_list_activity">Flickr Image List Activity</string>
 </resources>

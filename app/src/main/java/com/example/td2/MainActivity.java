@@ -14,14 +14,20 @@ public class MainActivity extends AppCompatActivity {
 
         Button bob_act = findViewById(R.id.button_bob);
         bob_act.setOnClickListener( ev -> {
-            Intent auth_call = new Intent(getApplicationContext(), AuthActivity.class);
-            startActivity(auth_call);
+            Intent to_auth = new Intent(getApplicationContext(), AuthActivity.class);
+            startActivity(to_auth);
         });
 
-        Button flickr_img__act = findViewById(R.id.button_flickr_img);
-        flickr_img__act.setOnClickListener( ev -> {
-            Intent flickr_call = new Intent(getApplicationContext(), FlickrImgActivity.class);
-            startActivity(flickr_call);
+        Button flickr_img_act = findViewById(R.id.button_flickr_img);
+        flickr_img_act.setOnClickListener( ev -> {
+            Intent to_flickr_img = new Intent(getApplicationContext(), FlickrImgActivity.class);
+            startActivity(to_flickr_img);
+        });
+
+        Button flickr_img_list_act = findViewById(R.id.button_flickr_img_list);
+        flickr_img_list_act.setOnClickListener(ev -> {
+            Intent to_flickr_img_list = new Intent(getApplicationContext(), FlickrImgListActivity.class);
+            startActivity(to_flickr_img_list);
         });
     }
 }
