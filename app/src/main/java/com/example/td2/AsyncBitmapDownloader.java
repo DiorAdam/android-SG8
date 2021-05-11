@@ -1,6 +1,7 @@
 package com.example.td2;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -14,8 +15,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class AsyncBitmapDownloader extends AsyncTask<String, Void, Bitmap> {
-    //@SuppressLint("StaticFieldLeak")
+    @SuppressLint("StaticFieldLeak")
     FlickrImgActivity flickrAct;
+
 
     public AsyncBitmapDownloader(FlickrImgActivity flickrAct_){
         this.flickrAct = flickrAct_;

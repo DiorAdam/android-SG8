@@ -17,7 +17,7 @@ public class AuthActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceData){
         super.onCreate(savedInstanceData);
-        this.setContentView(R.layout.authentication);
+        this.setContentView(R.layout.activity_authentication);
 
         Button button_login = this.findViewById(R.id.button_login);
         button_login.setOnClickListener(ev->{

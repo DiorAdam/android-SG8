@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class AsyncFlickrJSONData extends AsyncTask<String, Void, JSONObject> {
-    //@SuppressLint("StaticFieldLeak")
+    @SuppressLint("StaticFieldLeak")
     FlickrImgActivity flickrAct;
 
     public AsyncFlickrJSONData(FlickrImgActivity flickrAct_){

@@ -1,13 +1,19 @@
 package com.example.td2;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.helper.widget.Layer;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageRequest;
 
 import java.util.Vector;
 
@@ -44,10 +50,25 @@ public class ListImgAdapter extends BaseAdapter {
         Log.i("yolo", "Logging from ListImgAdapter.getView()");
         if (convertView == null) {
             convertView = LayoutInflater.from(context)
-                            .inflate(R.layout.img_url_textview, parent, false);
+                            .inflate(R.layout.bitmaplayout, parent, false);
         }
-        TextView tv = convertView.findViewById(R.id.textview_img_url);
-        tv.setText(urls.get(position));
+
+        // TextView tv = convertView.findViewById(R.id.textview_img_url);
+        // tv.setText(urls.get(position));
+
+        ImageView iv = convertView.findViewById(R.id.img_view);
+
+        RequestQueue queue = MySingleton.getInstance(this.context.getApplicationContext()).
+                getRequestQueue();
+        ImageRequest img_request = new ImageRequest(
+                urls.get(position),
+                iv::setImageBitmap,
+                iv.getMaxWidth(),
+                iv.getMaxHeight(),
+                iv.getScaleType(),
+                null,
+                null);
+        queue.add(img_request);
         return convertView;
     }
 }

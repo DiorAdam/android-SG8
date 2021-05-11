@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/flickr_img"
                 android:contentDescription="@string/flickr_image_activity"
+
         />
 
     </LinearLayout>
