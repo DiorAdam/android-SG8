@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference android:title="image category"
+    <EditTextPreference android:title="Image Category"
                         android:key="img-category"
-                        android:summary="What category of image would you like to see (cats, trees...)"/>
+                        android:summary="What category of image would you like to see (cats, trees...)"
+    />
+    <CheckBoxPreference android:title="Image Caching"
+                        android:defaultValue="true"
+                        android:summary="If set to true, the downloaded images from flickr will be cached"
+                        android:key="caching"
+    />
 </PreferenceScreen>
 

@@ -1,7 +1,9 @@
 package com.example.td2;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +62,7 @@ public class ListImgAdapter extends BaseAdapter {
 
         RequestQueue queue = MySingleton.getInstance(this.context.getApplicationContext()).
                 getRequestQueue();
+
         ImageRequest img_request = new ImageRequest(
                 urls.get(position),
                 iv::setImageBitmap,
@@ -68,6 +71,12 @@ public class ListImgAdapter extends BaseAdapter {
                 iv.getScaleType(),
                 null,
                 null);
+        /*
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean shouldCache = sp.getBoolean("caching", true);
+        queue.getCache().clear();
+        img_request.setShouldCache(shouldCache);
+        */
         queue.add(img_request);
         return convertView;
     }

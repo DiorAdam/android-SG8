@@ -12,6 +12,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.setButtonListeners();
+    }
+
+    private void setButtonListeners(){
         Button bob_act = findViewById(R.id.button_bob);
         bob_act.setOnClickListener( ev -> {
             Intent to_auth = new Intent(getApplicationContext(), AuthActivity.class);

@@ -12,8 +12,13 @@ public class FlickrImgListActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_flickr_img_list);
 
+        this.launchFlickrRequest();
+    }
+
+    private void launchFlickrRequest(){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String imgCategory = sp.getString("img-category", "trees");
+        String defaultValue = "stars";
+        String imgCategory = sp.getString("img-category", defaultValue);
 
         ListImgAdapter adapter = new ListImgAdapter(this);
         ListView list_img = findViewById(R.id.list_img);

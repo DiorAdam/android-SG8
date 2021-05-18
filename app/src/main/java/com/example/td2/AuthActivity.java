@@ -19,6 +19,20 @@ public class AuthActivity extends Activity {
         super.onCreate(savedInstanceData);
         this.setContentView(R.layout.activity_authentication);
 
+        this.setButtonListeners();
+    }
+
+    public static String readStream(InputStream is) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        BufferedReader r = new BufferedReader(new InputStreamReader(is),1000);
+        for (String line = r.readLine(); line != null; line =r.readLine()){
+            sb.append(line);
+        }
+        is.close();
+        return sb.toString();
+    }
+
+    private void setButtonListeners(){
         Button button_login = this.findViewById(R.id.button_login);
         button_login.setOnClickListener(ev->{
             new Thread(() -> {
@@ -59,15 +73,5 @@ public class AuthActivity extends Activity {
                 }
             }).start();
         });
-    }
-
-    public static String readStream(InputStream is) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        BufferedReader r = new BufferedReader(new InputStreamReader(is),1000);
-        for (String line = r.readLine(); line != null; line =r.readLine()){
-            sb.append(line);
-        }
-        is.close();
-        return sb.toString();
     }
 }

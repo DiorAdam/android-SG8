@@ -14,9 +14,14 @@ public class FlickrImgActivity extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_flickr_img);
+
+        this.launchFlickrRequest();
+    }
+
+    private void launchFlickrRequest(){
         flickr_img = findViewById(R.id.flickr_img);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String imgCategory = sp.getString("img-category", "trees");
+        String imgCategory = sp.getString("img-category", "stars");
         Button get_img = findViewById(R.id.button_get_img);
         get_img.setOnClickListener(ev ->{
             new AsyncFlickrJSONData(this).execute("https://www.flickr.com/services/feeds/photos_public.gne?tags=" +
