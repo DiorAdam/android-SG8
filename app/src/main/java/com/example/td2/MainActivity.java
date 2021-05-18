@@ -29,5 +29,11 @@ public class MainActivity extends AppCompatActivity {
             Intent to_flickr_img_list = new Intent(getApplicationContext(), FlickrImgListActivity.class);
             startActivity(to_flickr_img_list);
         });
+
+        Button settings = findViewById(R.id.button_settings);
+        settings.setOnClickListener(ev -> {
+            Intent to_settings = new Intent(getApplicationContext(), ImgPreferenceActivity.class);
+            startActivity(to_settings);
+        });
     }
 }
