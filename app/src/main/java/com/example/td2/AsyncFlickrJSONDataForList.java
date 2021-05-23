@@ -18,10 +18,9 @@ public class AsyncFlickrJSONDataForList extends AsyncTask<String, Void, JSONObje
         this.adapter = adapter_;
     }
 
-
     @Override
     protected JSONObject doInBackground(String... strings) {
-        URL url = null;
+        URL url;
         try {
             url = new URL(strings[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
